@@ -1,0 +1,225 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Drishti</title>
+ 
+
+ 
+<style >
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?size=626&ext=jpg');
+        background-size: cover;
+       
+        
+    }
+#container {
+	margin: auto;
+	width: 700px;
+	height: 400px;
+    margin-top: 20px;
+
+   
+	
+    
+    
+}
+#videoElement {
+	width: 700px;
+	height: 390px;
+	background-color: #666;
+    background-image: url('https://images.pexels.com/photos/3772353/pexels-photo-3772353.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+    background-size: cover;
+    
+  transform: scaleX(-1);
+  
+
+   
+}
+
+#btntoggle {
+
+  position: absolute;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  left: 27%;
+
+}
+
+#btntoggle1{
+
+position: absolute;
+background-color: #4CAF50;
+border: none;
+color: white;
+padding: 10px 22px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+border-radius: 5px;
+
+left: 46%;
+
+}
+#btntoggle2{
+
+position: absolute;
+background-color: #4CAF50;
+border: none;
+color: white;
+padding: 10px 22px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+border-radius: 5px;
+
+left: 67%;
+
+}
+#palm{
+  margin-left: 460px;
+  display: inline-block;
+  
+  
+
+}
+
+
+
+</style>
+</head>
+ 
+<body >
+  <div class="categories">
+    <img src= "{% static 'img/palm.png' %}" alt="" style="width:100px;height:100px;" id="palm">
+    
+    <img src= "{% static 'img/press1.png' %}" alt=""style="width:100px;height:100px;" id="press">
+    <img src= "{% static 'img/thumbs1.png' %}" alt="thumb"style="width:100px;height:100px;" id="thumb">
+
+  </div>
+
+
+
+<div id="container">
+	<video autoplay="true" id="videoElement">
+    
+
+    
+    
+	</video>
+</div>
+<button id="btntoggle" onclick="cameraonoff()"  > On </button>
+
+<div class="button"></div>
+
+<form action="{% url 'start' %}" method="GET">
+
+  <input type="submit" value="start" id="btntoggle1">
+
+
+</form>
+
+<div class="button"></div>
+
+<a id="btntoggle2" href="/"  > close </a>
+
+<div class="button"></div>
+<script>
+
+
+  /*
+var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+*/
+
+
+
+
+var videoElem = document.getElementById("videoElement");
+      var btnElm = document.getElementById("btntoggle");
+      var isPlaying = !!videoElem.srcObject;
+      function cameraonoff() {
+        if (!isPlaying) {
+          cameraon();
+        } else {
+          cameraoff();
+        }
+      }
+
+      function cameraon() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices
+            .getUserMedia({
+              video: true
+            })
+            .then(function (stream) {
+              videoElem.srcObject = stream;
+              videoElem.play();
+            })
+            .then(() => {
+              isPlaying = true;
+              btnElm.innerText = "Off";
+            });
+        }
+      }
+
+      function cameraoff() {
+        const stream = videoElem.srcObject;
+        if (stream) {
+          const tracks = stream.getTracks();
+
+          tracks.forEach(function (track) {
+            track.stop();
+          });
+
+          videoElem.srcObject = null;
+          isPlaying = false;
+          btnElm.innerText = "On";
+        }
+      }
+
+      
+</script>
+</body>
+</html>
