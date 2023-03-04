@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display Webcam Stream</title>
+ 
+
+ 
+<style >
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqm3BRpYZ0rKdrv_Q0ggXY54ynaoWvOjJ1oQ&usqp=CAU');
+        background-size: cover;
+        
+    }
+#container {
+	margin: auto;
+	width: 700px;
+	height: 400px;
+    margin-top: 5%;
+
+   
+	
+    
+    
+}
+#videoElement {
+	width: 700px;
+	height: 390px;
+	background-color: #666;
+    background-image: url(bg1.png);
+    background-size: cover;
+   
+}
+
+
+</style>
+</head>
+ 
+<body >
+<div id="container">
+	<video autoplay="true" id="videoElement">
+	
+	</video>
+</div>
+
+
+<div class="button"></div>
+<script>
+var video = document.querySelector("#videoElement");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+</script>
+</body>
+</html>
